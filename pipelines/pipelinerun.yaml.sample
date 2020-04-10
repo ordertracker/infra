@@ -1,0 +1,41 @@
+apiVersion: tekton.dev/v1alpha1
+kind: PipelineRun
+metadata:
+  name: api-pipeline-run
+  namespace: tekton-pipelines
+spec:
+  serviceAccountName: tekton-pipelines
+  pipelineRef:
+    name: api-pipeline
+  resources:
+    - name: git-repo
+      resourceRef:
+        name: git-repo
+    - name: image-registry
+      resourceRef:
+        name: image-registry
+  params:
+    - name: "appName"
+      value: ""
+    - name: imageRepository
+      value: ""
+    - name: ingressHost
+      value: ""
+    - name: pvcName
+      value: ""
+    - name: pvcResourcesStorage
+      value: ""
+    - name: pvcStorageClassName
+      value: ""
+    - name: backendAppEnv
+      value: ""
+    - name: backendConsumerKey
+      value: ""
+    - name: backendConsumerSecret
+      value: ""
+    - name: backendAccessToken
+      value: ""
+    - name: backendAccessTokenSecret
+      value: ""
+    - name: backendAuthToken
+      value: ""
